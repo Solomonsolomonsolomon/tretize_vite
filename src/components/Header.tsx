@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Logo from './../assets/IMG-20230408-WA0000.png'
-import {Link} from 'react-scroll'
+import Logo from "./../assets/IMG-20230408-WA0000.png";
+import { Link } from "react-scroll";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,16 +19,20 @@ const Header: React.FC = () => {
             <Link to="/" className="text-gray-600 hover:text-blue-500">
               Home
             </Link>
-            <Link to="about" className="text-gray-600 hover:text-blue-500">
+            <Link
+              to="about"
+              smooth
+              className="text-gray-600 hover:text-blue-500"
+            >
               About
             </Link>
-            <Link to="services" className="text-gray-600 hover:text-blue-500">
+            <Link to="services" smooth className="text-gray-600 hover:text-blue-500">
               Services
             </Link>
-            <Link to="contact" className="text-gray-600 hover:text-blue-500">
+            <Link to="contact" smooth className="text-gray-600 hover:text-blue-500">
               Contact
             </Link>
-            <Link to="faq" className="text-gray-600 hover:text-blue-500">
+            <Link to="faq" smooth className="text-gray-600 hover:text-blue-500">
               FAQ
             </Link>
           </div>

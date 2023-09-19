@@ -1,6 +1,9 @@
 import React from "react";
 import Header from "./Header(sub)";
 const Privacy: React.FC = () => {
+  window.onbeforeunload = () => {
+    window.scroll(0, 0);
+  };
   return (
     <>
       <Header />

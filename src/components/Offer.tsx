@@ -10,6 +10,7 @@ interface IProps {
   setImagesStillLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Offer: React.FC<IProps> = ({ setImagesStillLoading }) => {
+   const [allImagesLoaded, setAllImagesLoaded] = React.useState(false);
   const offerings = [
     {
       title: "PACKAGING",
@@ -49,49 +50,13 @@ const Offer: React.FC<IProps> = ({ setImagesStillLoading }) => {
     },
   ];
 
-  // State to track whether descriptions are in view
-  // const [isDescInView, setIsDescInView] = useState(
-  //   Array(offerings.length).fill(false)
-  // );
 
-  // // Refs to store the Intersection Observer instances for descriptions
-  // const descRefs: React.MutableRefObject<any> = useRef<any>(
-  //   Array(offerings.length)
-  //     .fill(null)
-  //     .map(() => React.createRef())
-  // );
-
-  // useEffect(() => {
-  //   const options = {
-  //     threshold: 0.2, // Adjust this threshold as needed
-  //   };
-
-  //   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-  //     entries.forEach((entry, index) => {
-  //       if (entry.isIntersecting) {
-  //         setIsDescInView((prevState) => {
-  //           const newState = [...prevState];
-  //           newState[index] = true;
-  //           return newState;
-  //         });
-  //       }
-  //     });
-  //   };
-
-  //   const observer = new IntersectionObserver(handleIntersection, options);
-
-  //   descRefs.current.forEach((descRef: React.RefObject<any>) => {
-  //     observer.observe(descRef.current);
-  //   });
-
-  //   return () => observer.disconnect();
-  // }, []);
   React.useEffect(() => {
-    let alreadyLoaded = false;
+
     setImagesStillLoading(true);
 
     //  // setImagesStillLoading(false)
-    if (!alreadyLoaded) {
+
       const imagePromises = offerings.map((offers) => {
         console.log(offers.imageUrl);
         return new Promise((resolve, reject) => {
@@ -106,13 +71,11 @@ const Offer: React.FC<IProps> = ({ setImagesStillLoading }) => {
           setImagesStillLoading(false);
         })
         .catch((err) => {
-          console.log("err loading");
+          console.log("err loading",err);
         });
-    }
+    
 
-    return () => {
-      console.log('clea')
-      alreadyLoaded = true;
+    return () => { 
     };
   }, []);
   return (
