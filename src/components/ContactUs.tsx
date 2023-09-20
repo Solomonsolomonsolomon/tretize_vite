@@ -1,6 +1,5 @@
-
-
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 const ContactUsFooter = () => {
   return (
     <footer className="bg-gray-800 text-white py-8" id="contact">
@@ -10,25 +9,25 @@ const ContactUsFooter = () => {
             <h3 className="text-xl font-semibold mb-4">CONTACT US</h3>
             <p>
               TEL:{" "}
-              <a href="tel:+2348186408365" className="text-blue-50">
+              <a href="tel:+2348186408365" className="text-slate-300">
                 +234-818-640-8365
               </a>
             </p>
             <p>
               MOB:{" "}
-              <a href="tel:+2348036090618" className="text-blue-50">
+              <a href="tel:+2348036090618" className="text-slate-300">
                 +234-803-609-0618
               </a>
             </p>
             <p>
               MAIL:{" "}
-              <a href="mailto:tretize3ts@yahoo.com" className="text-blue-50">
+              <a href="mailto:tretize3ts@yahoo.com" className="text-slate-300">
                 tretize3ts@yahoo.com
               </a>
             </p>
             <p>
               MAIL2:{" "}
-              <a href="mailto:microsd2@yahoo.com" className="text-blue-50">
+              <a href="mailto:microsd2@yahoo.com" className="text-slate-300">
                 microsd2@yahoo.com
               </a>
             </p>
@@ -37,9 +36,9 @@ const ContactUsFooter = () => {
             <h3 className="text-xl font-semibold mb-4">INFORMATION</h3>
             <ul className="text-gray-400">
               <li>
-                <a href="/about" className="hover:text-blue-50">
+                <ScrollLink to="about" smooth className="hover:text-blue-50">
                   About Us
-                </a>
+                </ScrollLink>
               </li>
               <li>
                 <Link to="/privacypolicy" className="hover:text-blue-50">
