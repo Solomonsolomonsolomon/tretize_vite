@@ -26,10 +26,18 @@ const Header: React.FC = () => {
             >
               About
             </Link>
-            <Link to="services" smooth className="text-gray-600 hover:text-blue-500">
+            <Link
+              to="services"
+              smooth
+              className="text-gray-600 hover:text-blue-500"
+            >
               Services
             </Link>
-            <Link to="contact" smooth className="text-gray-600 hover:text-blue-500">
+            <Link
+              to="contact"
+              smooth
+              className="text-gray-600 hover:text-blue-500"
+            >
               Contact
             </Link>
             <Link to="faq" smooth className="text-gray-600 hover:text-blue-500">
@@ -79,17 +87,26 @@ const Header: React.FC = () => {
           <div className="mt-4 md:hidden">
             <ul className="text-center space-y-2">
               <li>
-                <Link to="/" className="text-gray-600 hover:text-blue-500">
+                <Link
+                  to="/"
+                  smooth
+                  className="text-gray-600 hover:text-blue-500"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="about" className="text-gray-600 hover:text-blue-500">
+                <Link
+                  to="about"
+                  smooth
+                  className="text-gray-600 hover:text-blue-500"
+                >
                   About
                 </Link>
               </li>
               <li>
                 <Link
+                  smooth
                   to="services"
                   className="text-gray-600 hover:text-blue-500"
                 >
@@ -98,6 +115,7 @@ const Header: React.FC = () => {
               </li>
               <li>
                 <Link
+                  smooth
                   to="contact"
                   className="text-gray-600 hover:text-blue-500"
                 >
@@ -105,7 +123,11 @@ const Header: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="faq" className="text-gray-600 hover:text-blue-500">
+                <Link
+                  smooth
+                  to="faq"
+                  className="text-gray-600 hover:text-blue-500"
+                >
                   FAQ
                 </Link>
               </li>
