@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Transition } from "react-transition-group";
 import Imgg from "./../assets/1.jpg";
 import PackagingImg from "./../assets/rosebox-BFdSCxmqvYc-unsplash.webp";
@@ -6,11 +6,12 @@ import SpecialProjectImg from "./../assets/barettTop.webp";
 import FreightForwardingImg from "./../assets/john-simmons-gXlZtblI0bM-unsplash.webp";
 import WareHousingImg from "./../assets/erwan-hesry-RJjY5Hpnifk-unsplash.webp";
 import HaulageImg from "../assets/mika-baumeister-WqZwkrBuZIE-unsplash (1).jpg";
+
 interface IProps {
   setImagesStillLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 const Offer: React.FC<IProps> = ({ setImagesStillLoading }) => {
-   const [allImagesLoaded, setAllImagesLoaded] = React.useState(false);
   const offerings = [
     {
       title: "PACKAGING",
@@ -50,34 +51,36 @@ const Offer: React.FC<IProps> = ({ setImagesStillLoading }) => {
     },
   ];
 
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    let imageCount = 0;
 
-    setImagesStillLoading(true);
-
-    //  // setImagesStillLoading(false)
-
-      const imagePromises = offerings.map((offers) => {
-        console.log(offers.imageUrl);
-        return new Promise((resolve, reject) => {
-          let img = new Image();
-          img.src = offers.imageUrl;
-          img.onload = resolve;
-          img.onerror = reject;
-        });
-      });
-      Promise.all(imagePromises)
-        .then(() => {
-          setImagesStillLoading(false);
-        })
-        .catch((err) => {
-          console.log("err loading",err);
-        });
-    
-
-    return () => { 
+    const handleImageLoad = () => {
+      imageCount++;
+      if (imageCount === offerings.length) {
+        // All images have loaded
+        setImagesLoaded(true);
+        setImagesStillLoading(false);
+      }
     };
-  }, []);
+
+    offerings.forEach((offer) => {
+      const img = new Image();
+      img.src = offer.imageUrl;
+      img.addEventListener("load", handleImageLoad);
+    });
+
+    // Cleanup listeners when component unmounts
+    return () => {
+      offerings.forEach((offer) => {
+        const img = new Image();
+        img.src = offer.imageUrl;
+        img.removeEventListener("load", handleImageLoad);
+      });
+    };
+  }, [offerings, setImagesStillLoading]);
+
   return (
     <div className="max-w-screen-xl mx-auto p-10 pt-2 md:p-16" id="services">
       <hr className="border-t-4 border-blue-500 w-20 mx-auto mb-8" />
@@ -86,7 +89,7 @@ const Offer: React.FC<IProps> = ({ setImagesStillLoading }) => {
       </h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {offerings.map((offer, index) => (
-          <Transition key={index} in={true} timeout={index * 300}>
+          <Transition key={index} in={imagesLoaded} timeout={index * 300}>
             {(state) => (
               <div
                 className={`bg-white p-6 rounded-lg shadow-md animate-card transition-transform transform ${
@@ -96,17 +99,10 @@ const Offer: React.FC<IProps> = ({ setImagesStillLoading }) => {
                 <img
                   src={offer.imageUrl}
                   alt={offer.title}
-                  className="w-full  h-[9em] mb-4 mx-auto"
+                  className="w-full h-[9em] mb-4 mx-auto"
                 />
                 <h3 className="text-lg font-semibold mb-2">{offer.title}</h3>
-                <p
-                // ref={descRefs.current[index]}
-                // className={`text-gray-600 text-sm ${
-                //   isDescInView[index] ? "slide-in-text" : ""
-                // }`}
-                >
-                  {offer.description}
-                </p>
+                <p className="text-gray-600 text-sm">{offer.description}</p>
               </div>
             )}
           </Transition>

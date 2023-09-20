@@ -50,6 +50,9 @@ const ContactUsFooter = () => {
                 <Link
                   to="/termsandconditions"
                   className="hover:text-blue-50"
+                  // onClick={()=>{
+                  //   window.scroll(0,0)
+                  // }}
                 >
                   Terms and Conditions
                 </Link>
