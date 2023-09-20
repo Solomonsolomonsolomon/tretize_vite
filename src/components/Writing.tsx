@@ -11,7 +11,7 @@ const Writing = () => {
         "TRETIZE ROYALE LOGISTICS.",
         "AN END-TO-END LOGISTICS SERVICE PROVIDER",
       ],
-      typeSpeed: 40,
+      typeSpeed: 60,
       loop: true,
       smartBackSpace: true,
     });

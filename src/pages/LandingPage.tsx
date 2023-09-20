@@ -7,7 +7,7 @@ import AboutUs from "../components/About";
 import ContactUsFooter from "../components/ContactUs";
 import Spinner from "../components/Spinner";
 
-const LandingPage = () => {
+const LandingPage:React.FC = () => {
   const [imagesStillLoading, setImagesStillLoading] = useState(true);
 
   if (imagesStillLoading)
